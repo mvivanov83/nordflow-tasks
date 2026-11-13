@@ -5,7 +5,10 @@ import multer from "multer";
 import { ROOT } from "./db.js";
 import { httpError } from "./util.js";
 
-export const UPLOADS_ROOT = path.join(ROOT, "uploads");
+const configuredUploadsDir = String(process.env.UPLOADS_DIR || "").trim();
+export const UPLOADS_ROOT = configuredUploadsDir
+  ? path.resolve(ROOT, configuredUploadsDir)
+  : path.join(ROOT, "uploads");
 export const AVATARS_DIR = path.join(UPLOADS_ROOT, "avatars");
 export const ATTACHMENTS_DIR = path.join(UPLOADS_ROOT, "attachments");
 

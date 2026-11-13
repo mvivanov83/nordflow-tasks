@@ -3,6 +3,7 @@ import path from "node:path";
 import bcrypt from "bcryptjs";
 import { initSchema, resetData } from "./schema.js";
 import { get, insert, run, setSetting } from "./db.js";
+import { UPLOADS_ROOT } from "./uploads.js";
 import { addDays, dateOnly, nowIso } from "./util.js";
 
 const PASSWORD_ADMIN = "Admin123!";
@@ -474,8 +475,7 @@ export async function seedDemoData({ force = false } = {}) {
   }
 
   const demoFilePath = path.join(
-    process.cwd(),
-    "uploads",
+    UPLOADS_ROOT,
     "attachments",
     "demo-integration-schema.txt",
   );
